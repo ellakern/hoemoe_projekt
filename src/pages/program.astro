@@ -2,7 +2,10 @@
 //@ts-nocheck
 import Layout from "../components/layouts/layout.astro";
 import ArtistCard from "../components/ArtistCard.astro";
+import Header from "../components/header.astro";
+import Footer from "../components/footer.astro";
 import "../styles/program.css";
+import "../styles/global.css";
 
 const url = `${import.meta.env.PUBLIC_SUPABASE_URL}/rest/v1/kunstnertabel?select=*`;
 const apiKey = import.meta.env.PUBLIC_SUPABASE_PUBLISHABLE_KEY;
@@ -18,15 +21,6 @@ const data = await fetch(url, options).then((res) => res.json());
 ---
 
 <Layout>
-  <section class="program-hero">
-    <video class="hero-video" autoplay muted loop playsinline>
-      <source src="/images/hero.mp4" type="video/mp4" />
-    </video>
-
-    <div class="hero-logo">
-      <img src="/images/logo.svg" alt="Høst Møn logo" />
-    </div>
-  </section>
 
   <ul class="artist-list">
     {data.map((kunstner, index) => (

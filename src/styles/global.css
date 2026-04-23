@@ -1,8 +1,8 @@
 :root {
-  --beige: #ead0af;
-  --brown: #a64700;
-  --dark-brown: #4d2812;
-  --light: #fff7ef;
+  --beige: #fbdcb6;
+  --brown: #a63f04;
+  --dark-brown: #451902;
+  --light: #fdeedf;
 }
 
 * {
@@ -14,11 +14,15 @@
 html,
 body {
   font-family: Arial, Helvetica, sans-serif;
-  background-color: var(--beige);
+  background-color: var(--light);
 }
 
 body {
   min-height: 100vh;
+}
+
+main {
+  padding-top: 100px;
 }
 
 a {
@@ -44,24 +48,6 @@ a {
 .hero-logo img {
   width: min(70vw, 850px);
   height: auto;
-}
-
-.burger {
-  position: absolute;
-  top: 2rem;
-  right: 2rem;
-  z-index: 5;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.burger span {
-  display: block;
-  width: 3rem;
-  height: 4px;
-  border-radius: 999px;
-  background-color: var(--brown);
 }
 
 .hero-logo {
@@ -108,55 +94,10 @@ a {
   }
 }
 
-.info-section {
-  display: flex;
-  justify-content: space-between;
-  gap: 2rem;
-  padding: 3rem 2rem 4rem;
-  background-color: var(--beige);
-  color: var(--dark-brown);
-  text-transform: uppercase;
-  font-weight: 800;
-}
-
-.info-left,
-.info-right {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.info-left p,
-.info-right a {
-  font-size: clamp(1rem, 1.3vw, 1.6rem);
-  line-height: 1.2;
-}
-
-.info-right {
-  text-align: right;
-}
-
 @media (max-width: 768px) {
   .hero {
     height: 60vh;
     min-height: 400px;
-  }
-
-  .burger {
-    top: 1rem;
-    right: 1rem;
-  }
-
-  .burger span {
-    width: 2.3rem;
-  }
-
-  .info-section {
-    flex-direction: column;
-  }
-
-  .info-right {
-    text-align: left;
   }
 }
 
@@ -167,16 +108,27 @@ a {
   display: block;
 }
 
+.hero-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ================= HEADER ================= */
+
 .site-header {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 30;
+  z-index: 1000;
+
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  padding: 2rem;
+  align-items: center;
+
+  padding: 0 2rem 0 2rem;
 }
 
 .header-logo img {
@@ -185,27 +137,16 @@ a {
   display: block;
 }
 
-.hero-video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-/******burger*******/
+/* ================= BURGER ================= */
 
 .burger {
-  position: absolute;
-  top: 2rem;
-  right: 2rem;
-  z-index: 20;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
   background: none;
   border: none;
   cursor: pointer;
-  padding: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .burger span {
@@ -216,41 +157,39 @@ a {
   background-color: var(--brown);
 }
 
+/* ================= FULLSCREEN MENU ================= */
+
 .fullscreen-menu {
+  display: none; /* 🔥 vigtig */
+
   position: fixed;
   inset: 0;
   z-index: 999;
   background-color: var(--brown);
   color: var(--light);
   padding: 2rem;
-  display: flex;
+
   flex-direction: column;
   justify-content: space-between;
-
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transition:
-    opacity 0.25s ease,
-    visibility 0.25s ease;
 }
 
 .fullscreen-menu.active {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
+  display: flex;
 }
+
+/* top bar i menu */
 
 .menu-top {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
 }
 
 .menu-logo img {
   width: 220px;
-  height: auto;
 }
+
+/* close button */
 
 .close-btn {
   position: relative;
@@ -259,7 +198,6 @@ a {
   background: none;
   border: none;
   cursor: pointer;
-  padding: 0;
 }
 
 .close-btn span {
@@ -279,6 +217,8 @@ a {
 .close-btn span:last-child {
   transform: rotate(-45deg);
 }
+
+/* menu content */
 
 .menu-content {
   flex: 1;
@@ -301,6 +241,8 @@ a {
   line-height: 0.9;
 }
 
+/* bottom links */
+
 .menu-bottom-links {
   display: flex;
   justify-content: center;
@@ -312,10 +254,15 @@ a {
   font-size: clamp(1.4rem, 2vw, 2rem);
   text-transform: uppercase;
   text-decoration: underline;
-  text-underline-offset: 0.2em;
 }
 
+/* mobile */
+
 @media (max-width: 768px) {
+  .header-logo img {
+    width: 140px;
+  }
+
   .menu-logo img {
     width: 160px;
   }

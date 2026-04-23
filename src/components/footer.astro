@@ -1,0 +1,62 @@
+<section class="info-section">
+  <div class="info-left">
+    <p>28.-29. AUGUST</p>
+    <p>MASNEDFORTET - FORTVEJ 8, 4760 VORDINGBORG</p>
+  </div>
+
+  <div class="info-right">
+    <a href="#">INSTAGRAM</a>
+    <a href="#">FACEBOOK</a>
+    <a href="mailto:info@hoestmoen.dk">INFO@HOESTMOEN.DK</a>
+  </div>
+</section>
+
+<style is:global>
+  .info-section {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 2rem 2rem 2rem;
+    background-color: var(--beige);
+    color: var(--dark-brown);
+    text-transform: uppercase;
+    font-weight: 800;
+  }
+
+  .info-left,
+  .info-right {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .info-left p,
+  .info-right a {
+    font-size: 1rem;
+    line-height: 1;
+  }
+
+  .info-right {
+    text-align: right;
+  }
+
+ .info-right a {
+  color: var(--dark-brown);
+  text-decoration: none;
+  font-weight: 800;
+}
+
+.info-right a:hover {
+  opacity: 0.7;
+}
+
+  @media (max-width: 768px) {
+    .info-section {
+      flex-direction: column;
+    }
+
+    .info-right {
+      text-align: left;
+    }
+  }
+</style>
