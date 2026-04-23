@@ -1,0 +1,68 @@
+---
+//@ts-nocheck
+import Layout from "./layouts/Layout.astro";
+import ArtistCard from "./layouts/components/ArtistCard.astro";
+
+import "../styles/program.css";
+
+const url =`${import.meta.env.SUPABASE_URL}/rest/v1/kunstnertabel?select=*`;
+const apiKey = import.meta.env.SUPABASE_PUBLISHABLE_KEY;
+
+const options = {
+  headers: {
+    apikey: apiKey,
+  },
+};
+
+const data = await fetch(url, options)
+  .then((res) => res.json());
+
+console.log(data);
+---
+
+<Layout>
+
+  <ul class="artist-list">
+    {data.map((kunstner, index) => (
+      <li class="artist-item">
+        <button class="artist-name" data-index={index}>
+          {kunstner.kunstner_navn}
+        </button>
+
+        <div class="artist-content" id={`content-${index}`}>
+          <ArtistCard kunstner={kunstner} />
+        </div>
+      </li>
+    ))}
+  </ul>
+
+</Layout>
+
+<script>
+  const buttons = document.querySelectorAll(".artist-name");
+
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      if (!(btn instanceof HTMLElement)) return;
+
+      const index = btn.dataset.index;
+      const content = document.getElementById(`content-${index}`);
+
+      if (!(content instanceof HTMLElement)) return;
+
+      const isOpen = content.style.maxHeight;
+
+      // luk alle først
+      document.querySelectorAll(".artist-content").forEach(el => {
+        if (el instanceof HTMLElement) {
+          el.style.maxHeight = null;
+        }
+      });
+
+      // hvis den IKKE var åben → åbne den
+      if (!isOpen) {
+        content.style.maxHeight = content.scrollHeight + "px";
+      }
+    });
+  });
+</script>
