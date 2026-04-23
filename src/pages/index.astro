@@ -21,11 +21,39 @@ import "../styles/global.css";
         <video class="hero-video" autoplay muted loop playsinline>
   <source src="/images/hero.mp4" type="video/mp4" />
 </video>
-        <div class="burger">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
+        <button class="burger" id="openMenu" aria-label="Åbn menu">
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
+
+<nav class="fullscreen-menu" id="fullscreenMenu">
+  <div class="menu-top">
+    <a href="/" class="menu-logo">
+      <img src="/images/logo.svg" alt="Høst Møn logo" />
+    </a>
+
+    <button class="close-btn" id="closeMenu" aria-label="Luk menu">
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+
+  <div class="menu-content">
+    <ul class="menu-links">
+      <li><a href="/billetter">Billetter</a></li>
+      <li><a href="/program">Program</a></li>
+      <li><a href="/frivillige">Frivillige</a></li>
+      <li><a href="/fællesspisning">Kost og logi</a></li>
+      <li><a href="/omOs">Om os</a></li>
+    </ul>
+  </div>
+
+  <div class="menu-bottom-links">
+    <a href="/kontakt">Kontakt</a>
+    <a href="/nyhedsbrev">Nyhedsbrev</a>
+  </div>
+</nav>
 
         <div class="hero-logo">
   <img src="/images/logo.svg" alt="Høst Møn logo" />
@@ -56,5 +84,32 @@ import "../styles/global.css";
         </div>
       </section>
     </main>
+
+ <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const openMenu = document.querySelector("#openMenu");
+      const closeMenu = document.querySelector("#closeMenu");
+      const fullscreenMenu = document.querySelector("#fullscreenMenu");
+      const menuLinks = document.querySelectorAll(".menu-links a, .menu-bottom-links a");
+
+      openMenu?.addEventListener("click", () => {
+        fullscreenMenu?.classList.add("active");
+        document.body.style.overflow = "hidden";
+      });
+
+      closeMenu?.addEventListener("click", () => {
+        fullscreenMenu?.classList.remove("active");
+        document.body.style.overflow = "";
+      });
+
+      menuLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          fullscreenMenu?.classList.remove("active");
+          document.body.style.overflow = "";
+        });
+      });
+    });
+  </script>
+
   </body>
 </html>
