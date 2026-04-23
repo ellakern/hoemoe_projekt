@@ -90,12 +90,22 @@ a {
 .ticker-track {
   display: flex;
   gap: 2rem;
-  min-width: max-content;
+  width: max-content;
   font-family: "Barlow Condensed", sans-serif;
   font-size: clamp(1rem, 1.8vw, 2rem);
   font-weight: 800;
   text-transform: uppercase;
   padding-inline: 2rem;
+  animation: tickerMove 15s linear infinite;
+}
+
+@keyframes tickerMove {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 .info-section {
